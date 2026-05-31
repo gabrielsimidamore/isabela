@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Isabela Meira · Nail Design — Realeza</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Jost:wght@300;400;500&family=Parisienne&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --navy:#0c1730;
+    --navy-2:#0a1226;
+    --navy-soft:#14233f;
+    --gold:#c8a25c;
+    --gold-soft:#d9bd86;
+    --gold-deep:#a8843f;
+    --cream:#f4ecdd;
+    --cream-dim:#cbbfa9;
+    --line:rgba(200,162,92,.28);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:#070d1c;
+    color:var(--cream);
+    font-family:'Jost',sans-serif;
+    font-weight:300;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,h4{font-family:'Cormorant Garamond',serif;font-weight:600;line-height:1.08;}
+  .script{font-family:'Parisienne',cursive;font-weight:400;}
+  a{color:inherit;text-decoration:none;}
+  img{display:block;max-width:100%;}
+  .wrap{width:min(1180px,92vw);margin-inline:auto;}
+  .eyebrow{
+    font-family:'Jost',sans-serif;font-weight:400;font-size:.72rem;
+    letter-spacing:.42em;text-transform:uppercase;color:var(--gold);
+    display:flex;align-items:center;gap:.9rem;
+  }
+  .eyebrow::before{content:"";width:34px;height:1px;background:var(--gold);display:inline-block;}
+  .eyebrow.center{justify-content:center;}
+  .eyebrow.center::after{content:"";width:34px;height:1px;background:var(--gold);display:inline-block;}
+
+  .crown{width:1em;height:1em;color:var(--gold);display:inline-block;vertical-align:middle;}
+
+  /* ---------- buttons ---------- */
+  .btn{
+    display:inline-flex;align-items:center;gap:.6rem;
+    font-family:'Jost',sans-serif;font-weight:400;font-size:.82rem;
+    letter-spacing:.18em;text-transform:uppercase;
+    padding:1.05rem 2.1rem;border-radius:2rem;
+    background:linear-gradient(135deg,var(--gold-soft),var(--gold-deep));
+    color:#1a1206;border:none;cursor:pointer;
+    transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s;
+    box-shadow:0 10px 30px -12px rgba(200,162,92,.7);
+  }
+  .btn:hover{transform:translateY(-3px);box-shadow:0 18px 40px -14px rgba(200,162,92,.85);}
+  .btn-ghost{
+    background:linear-gradient(135deg,rgba(255,255,255,.13),rgba(255,255,255,.04));
+    backdrop-filter:blur(14px) saturate(1.3);-webkit-backdrop-filter:blur(14px) saturate(1.3);
+    border:1px solid rgba(255,255,255,.2);color:var(--cream);box-shadow:inset 0 1px 0 rgba(255,255,255,.25);
+  }
+  .btn-ghost:hover{border-color:var(--gold);background:linear-gradient(135deg,rgba(200,162,92,.28),rgba(200,162,92,.08));}
+
+  /* ---------- header ---------- */
+  header{
+    position:fixed;top:0;left:0;width:100%;z-index:60;
+    transition:background .4s,backdrop-filter .4s,padding .4s,border-color .4s;
+    border-bottom:1px solid transparent;
+  }
+  header.scrolled{
+    background:linear-gradient(135deg,rgba(255,255,255,.08),rgba(10,18,38,.55));
+    backdrop-filter:blur(14px) saturate(1.5);-webkit-backdrop-filter:blur(14px) saturate(1.5);
+    border-bottom-color:rgba(255,255,255,.12);box-shadow:0 8px 32px -12px rgba(0,0,0,.5);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:1.4rem 0;}
+  .brand{display:flex;align-items:center;gap:.7rem;}
+  .brand .mark{
+    width:42px;height:42px;border:1px solid var(--gold);border-radius:50%;
+    display:grid;place-items:center;color:var(--gold);font-size:1.15rem;
+  }
+  .brand .name{line-height:1.05;}
+  .brand .name b{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.18rem;letter-spacing:.04em;display:block;white-space:nowrap;}
+  .brand .name span{font-size:.6rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);}
+  .nav-links{display:flex;gap:2.2rem;align-items:center;}
+  .nav-links a{font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cream-dim);transition:color .3s;}
+  .nav-links a:hover{color:var(--gold);}
+  .nav .btn{padding:.8rem 1.5rem;}
+  .menu-btn{display:none;background:none;border:none;color:var(--cream);cursor:pointer;flex-direction:column;gap:5px;}
+  .menu-btn span{width:26px;height:1.5px;background:var(--cream);display:block;transition:.3s;}
+  .mobile-menu{
+    position:fixed;inset:0;z-index:55;background:var(--navy-2);
+    display:flex;flex-direction:column;justify-content:center;align-items:center;gap:1.6rem;
+    transform:translateY(-100%);transition:transform .5s cubic-bezier(.7,0,.2,1);
+  }
+  .mobile-menu.open{transform:translateY(0);}
+  .mobile-menu a{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--cream);}
+  .mobile-menu a:hover{color:var(--gold);}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;padding:11rem 0 6rem;overflow:hidden;}
+  .hero::before{
+    content:"";position:absolute;top:-30%;right:-10%;width:60vw;height:60vw;
+    background:radial-gradient(circle,rgba(200,162,92,.16),transparent 65%);z-index:1;pointer-events:none;
+  }
+  .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#070d1c,transparent 30%),linear-gradient(90deg,rgba(7,13,28,.74),rgba(7,13,28,.22) 44%,transparent 62%);z-index:1;pointer-events:none;}
+  #shaderCanvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;display:block;}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:4rem;align-items:center;position:relative;z-index:2;}
+  .hero h1{font-size:clamp(3rem,6.6vw,6rem);letter-spacing:-.01em;margin:1.4rem 0 1.6rem;}
+  .hero h1 em{font-style:normal;color:var(--gold);}
+  .rotador{display:inline-block;position:relative;}
+  .rotador em{display:inline-block;transition:opacity .4s ease,transform .4s ease;}
+  .rotador em.out{opacity:0;transform:translateY(-0.28em);}
+  .rotador em.in{opacity:0;transform:translateY(0.28em);}
+  .hero .script-big{font-family:'Parisienne',cursive;color:var(--gold-soft);font-size:clamp(2rem,4vw,3rem);display:block;margin-bottom:-.3rem;}
+  .hero p.lead{max-width:34ch;color:var(--cream-dim);font-size:1.06rem;margin-bottom:2.4rem;}
+  .hero-cta{display:flex;gap:1rem;flex-wrap:wrap;}
+  .hero-stats{display:flex;gap:2.6rem;margin-top:3.2rem;}
+  .hero-stats .s b{font-family:'Cormorant Garamond',serif;font-size:2.3rem;color:var(--gold);display:block;line-height:1;}
+  .hero-stats .s span{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--cream-dim);}
+
+  .portrait-frame{position:relative;}
+  .portrait-frame .arch{
+    border-radius:50% 50% 12px 12px / 38% 38% 6px 6px;overflow:hidden;
+    border:1px solid var(--line);box-shadow:0 40px 80px -30px #000;
+    position:relative;
+  }
+  .portrait-frame .arch img{width:100%;height:620px;object-fit:cover;object-position:top center;}
+  .portrait-frame::after{
+    content:"";position:absolute;inset:-14px;border:1px solid var(--line);
+    border-radius:50% 50% 20px 20px / 40% 40% 8px 8px;z-index:-1;
+  }
+  .portrait-badge{
+    position:absolute;bottom:24px;left:-26px;
+    background:linear-gradient(135deg,rgba(255,255,255,.18),rgba(255,255,255,.05));
+    backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);
+    border:1px solid rgba(255,255,255,.24);border-radius:1rem;padding:1rem 1.3rem;
+    display:flex;align-items:center;gap:.7rem;box-shadow:0 20px 40px -20px #000,inset 0 1px 0 rgba(255,255,255,.3);
+  }
+  .portrait-badge .crown{font-size:1.6rem;}
+  .portrait-badge small{font-family:'Parisienne',cursive;font-size:1.3rem;color:var(--gold-soft);line-height:1;}
+  .portrait-badge span{font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;color:var(--cream-dim);display:block;}
+
+  /* ---------- section base ---------- */
+  section{position:relative;}
+  .sec-pad{padding:7rem 0;}
+  .sec-head{text-align:center;max-width:640px;margin:0 auto 4rem;}
+  .sec-head h2{font-size:clamp(2.4rem,4.6vw,3.6rem);margin:1.1rem 0 1rem;}
+  .sec-head p{color:var(--cream-dim);}
+
+  /* ---------- services ---------- */
+  .services{background:rgba(10,18,38,.5);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;}
+  .svc{
+    border:1px solid rgba(255,255,255,.13);border-radius:1.2rem;padding:2.2rem 2rem;
+    background:linear-gradient(135deg,rgba(255,255,255,.085),rgba(255,255,255,.015)),linear-gradient(160deg,rgba(34,52,88,.55),rgba(13,22,44,.5));
+    box-shadow:0 8px 32px -10px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.18);
+    transition:transform .4s,border-color .4s,box-shadow .4s;position:relative;overflow:hidden;
+  }
+  .svc::before{content:"";position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0;transition:opacity .4s;}
+  .svc:hover{transform:translateY(-8px);border-color:var(--gold);}
+  .svc:hover::before{opacity:1;}
+  .svc .num{font-family:'Cormorant Garamond',serif;font-size:.95rem;color:var(--gold);letter-spacing:.2em;}
+  .svc h3{font-size:1.7rem;margin:.7rem 0 .8rem;}
+  .svc p{color:var(--cream-dim);font-size:.92rem;min-height:5.4em;}
+  .svc .price{margin-top:1.2rem;padding-top:1.2rem;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:baseline;}
+  .svc .price b{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--gold);}
+  .svc .price span{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--cream-dim);}
+
+  /* ---------- gallery ---------- */
+  .gal-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:230px;gap:1rem;}
+  .gal-item{overflow:hidden;border-radius:1rem;position:relative;border:1px solid rgba(255,255,255,.05);}
+  .gal-item img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.8,.2,1);}
+  .gal-item:hover img{transform:scale(1.08);}
+  .gal-item::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(12,23,48,.55),transparent 55%);opacity:0;transition:opacity .4s;}
+  .gal-item:hover::after{opacity:1;}
+  .gal-item .tag{position:absolute;left:1rem;bottom:1rem;font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:var(--cream);opacity:0;transform:translateY(8px);transition:.4s;z-index:2;}
+  .gal-item:hover .tag{opacity:1;transform:translateY(0);}
+  .tall{grid-row:span 2;}
+  .wide{grid-column:span 2;}
+
+  /* ---------- about ---------- */
+  .about{position:relative;border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;
+    background:linear-gradient(90deg,rgba(7,13,28,.46) 0%,rgba(7,13,28,.54) 40%,rgba(7,13,28,.64) 100%),
+      url('assets/marble-sobre.png');
+    background-size:cover,cover;background-position:center,center;}
+  .about > .wrap{position:relative;z-index:1;}
+  /* liquid glass text panel */
+  .about-glass{position:relative;padding:2.7rem 2.7rem 2.9rem;border-radius:1.6rem;overflow:hidden;
+    background:linear-gradient(135deg,rgba(255,255,255,.12),rgba(255,255,255,.02)),linear-gradient(160deg,rgba(9,16,34,.52),rgba(9,16,34,.40));
+    backdrop-filter:blur(20px) saturate(1.6);-webkit-backdrop-filter:blur(20px) saturate(1.6);
+    border:1px solid rgba(255,255,255,.24);
+    box-shadow:0 34px 80px -34px rgba(0,0,0,.75),inset 0 1px 0 rgba(255,255,255,.34),inset 0 -1px 0 rgba(255,255,255,.06);}
+  .about-glass>*{position:relative;z-index:1;}
+  .about-glass::before{content:"";position:absolute;z-index:0;top:-60%;left:0;width:45%;height:220%;pointer-events:none;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.16) 48%,transparent);
+    transform:translateX(-220%) rotate(18deg);animation:glassSheen 8s ease-in-out infinite;animation-play-state:paused;}
+  @keyframes glassSheen{0%{transform:translateX(-220%) rotate(18deg);}55%,100%{transform:translateX(560%) rotate(18deg);}}
+  .about h2,.about .sign{text-shadow:0 2px 10px rgba(7,13,28,.45);}
+  .about p{color:#ece4d4;text-shadow:0 1px 6px rgba(7,13,28,.5);}
+  /* floating portrait */
+  .about-img img{animation:aboutFloat 7s ease-in-out infinite;animation-play-state:paused;}
+  @keyframes aboutFloat{0%,100%{transform:scale(1.06) translateY(0);}50%{transform:scale(1.06) translateY(-2.4%);}}
+  .about.in-view .about-glass::before,.about.in-view .about-img img{animation-play-state:running;}
+  .about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:4rem;align-items:center;}
+  .about-img{position:relative;border-radius:1.4rem;overflow:hidden;border:1px solid var(--line);will-change:transform;}
+  .about-img img{width:100%;height:560px;object-fit:cover;object-position:center top;}
+  .about h2{font-size:clamp(2.4rem,4.6vw,3.4rem);margin:1rem 0 1.4rem;}
+  .about p{color:var(--cream-dim);margin-bottom:1.2rem;}
+  .about .sign{font-family:'Parisienne',cursive;font-size:2.4rem;color:var(--gold-soft);margin-top:.6rem;}
+  .about-feats{display:flex;gap:2.4rem;margin:2rem 0;}
+  .about-feats .f b{font-family:'Cormorant Garamond',serif;font-size:2.6rem;color:var(--gold);display:block;line-height:1;}
+  .about-feats .f span{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--cream-dim);}
+
+  /* ---------- testimonials ---------- */
+  .tst-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;}
+  .tst{border:1px solid rgba(255,255,255,.13);border-radius:1.2rem;padding:2.2rem;background:linear-gradient(135deg,rgba(255,255,255,.085),rgba(255,255,255,.015)),linear-gradient(160deg,rgba(34,52,88,.5),rgba(13,22,44,.5));box-shadow:0 8px 32px -10px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.16);}
+  .tst .stars{color:var(--gold);letter-spacing:.2em;margin-bottom:1rem;}
+  .tst blockquote{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.32rem;line-height:1.45;color:var(--cream);margin-bottom:1.4rem;}
+  .tst .who{display:flex;align-items:center;gap:.9rem;}
+  .tst .who .av{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--gold-soft),var(--gold-deep));display:grid;place-items:center;color:#1a1206;font-family:'Cormorant Garamond',serif;font-size:1.2rem;}
+  .tst .who b{font-weight:400;font-size:.95rem;}
+  .tst .who span{display:block;font-size:.74rem;color:var(--cream-dim);}
+
+  /* ---------- contact ---------- */
+  .contact{background:linear-gradient(160deg,rgba(20,35,63,.45),rgba(10,18,38,.3));border-top:1px solid var(--line);}
+  .contact-card{
+    text-align:center;max-width:760px;margin:0 auto;
+    border:1px solid rgba(255,255,255,.16);border-radius:2rem;padding:4rem 3rem;
+    background:linear-gradient(135deg,rgba(255,255,255,.10),rgba(255,255,255,.03)),radial-gradient(circle at 50% -20%,rgba(200,162,92,.2),transparent 60%);
+    backdrop-filter:blur(14px) saturate(1.4);-webkit-backdrop-filter:blur(14px) saturate(1.4);
+    box-shadow:0 24px 64px -22px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.25);
+  }
+  .contact-card .crown{font-size:2.6rem;}
+  .contact-card h2{font-size:clamp(2.4rem,5vw,4rem);margin:1rem 0 1.2rem;}
+  .contact-card p{color:var(--cream-dim);max-width:46ch;margin:0 auto 2.4rem;}
+  .contact-meta{display:flex;justify-content:center;gap:2.6rem;flex-wrap:wrap;margin-top:2.6rem;color:var(--cream-dim);font-size:.9rem;}
+  .contact-meta a:hover{color:var(--gold);}
+  .contact-meta b{color:var(--gold);font-weight:400;letter-spacing:.12em;text-transform:uppercase;font-size:.72rem;display:block;margin-bottom:.2rem;}
+
+  /* ---------- footer ---------- */
+  footer{background:var(--navy-2);padding:3rem 0;border-top:1px solid var(--line);}
+  .foot{display:flex;justify-content:space-between;align-items:center;gap:1.5rem;flex-wrap:wrap;}
+  .foot small{color:var(--cream-dim);font-size:.8rem;letter-spacing:.06em;}
+  .foot .socials{display:flex;gap:1rem;}
+  .foot .socials a{width:40px;height:40px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;color:var(--cream-dim);transition:.3s;}
+  .foot .socials a:hover{color:var(--gold);border-color:var(--gold);transform:translateY(-3px);}
+
+  /* ---------- reveal ---------- */
+  .reveal{opacity:0;transform:translateY(32px);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1);}
+  .reveal.in{opacity:1;transform:none;}
+
+  /* ---------- responsive ---------- */
+  @media(max-width:920px){
+    .hero-grid,.about-grid{grid-template-columns:1fr;gap:3rem;}
+    .portrait-frame{max-width:440px;margin:0 auto;}
+    .svc-grid,.tst-grid{grid-template-columns:1fr;}
+    .gal-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:200px;}
+    .wide{grid-column:span 2;}
+    .nav-links,.nav .btn{display:none;}
+    .menu-btn{display:flex;}
+    .about-img img{height:420px;}
+  }
+  @media(max-width:520px){
+    .hero-stats{gap:1.6rem;}
+    .gal-grid{gap:.6rem;grid-auto-rows:150px;}
+    .contact-card{padding:2.6rem 1.4rem;}
+  }
+  /* ---------- liquid glass ambient orbs (static = no repaint cost) ---------- */
+  body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
+    background:
+      radial-gradient(40vw 40vw at 12% 14%, rgba(40,86,170,.20), transparent 62%),
+      radial-gradient(36vw 36vw at 88% 74%, rgba(200,162,92,.13), transparent 62%),
+      radial-gradient(32vw 32vw at 62% 108%, rgba(86,56,160,.17), transparent 62%);}
+
+  /* ---------- 3D circular gallery ---------- */
+  .cgal{position:relative;}
+  .st-btn{width:50px;height:50px;border-radius:50%;display:grid;place-items:center;cursor:pointer;color:var(--cream);flex:0 0 auto;
+    background:linear-gradient(135deg,rgba(255,255,255,.13),rgba(255,255,255,.04));
+    backdrop-filter:blur(10px) saturate(1.3);-webkit-backdrop-filter:blur(10px) saturate(1.3);
+    border:1px solid rgba(255,255,255,.2);box-shadow:inset 0 1px 0 rgba(255,255,255,.25);transition:transform .3s,background .3s,border-color .3s;}
+  .st-btn:hover{transform:translateY(-2px);background:linear-gradient(135deg,rgba(200,162,92,.5),rgba(200,162,92,.18));border-color:var(--gold);}
+  .st-btn svg{width:20px;height:20px;}
+  .cgal-stage{position:relative;height:500px;perspective:1700px;perspective-origin:50% 46%;cursor:grab;touch-action:pan-y;}
+  .cgal-stage.dragging{cursor:grabbing;}
+  .cgal-ring{position:absolute;inset:0;transform-style:preserve-3d;will-change:transform;}
+  .cgal-card{position:absolute;left:50%;top:50%;width:256px;height:360px;margin-left:-128px;margin-top:-180px;
+    border-radius:1.2rem;overflow:hidden;border:1px solid rgba(255,255,255,.18);
+    box-shadow:0 30px 60px -24px #000,inset 0 1px 0 rgba(255,255,255,.18);background:#0c1730;
+    backface-visibility:hidden;}
+  .cgal-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;user-select:none;-webkit-user-drag:none;pointer-events:none;}
+  .cgal-card figcaption{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:1.4rem 1.2rem 1.35rem;
+    background:linear-gradient(0deg,rgba(8,14,30,.94),rgba(8,14,30,.3) 64%,transparent);}
+  .cgal-card .tagline{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-soft);display:block;margin-bottom:.3rem;}
+  .cgal-card h4{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.45rem;color:#fff;line-height:1.08;margin-bottom:.7rem;text-shadow:0 2px 8px rgba(0,0,0,.6);}
+  .cgal-card .who{display:flex;align-items:center;gap:.55rem;}
+  .cgal-card .who .av{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--gold-soft),var(--gold-deep));display:grid;place-items:center;color:#1a1206;border:2px solid rgba(255,255,255,.6);flex:0 0 auto;}
+  .cgal-card .who .av svg{width:15px;height:15px;}
+  .cgal-card .who b{font-size:.8rem;font-weight:500;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.6);white-space:nowrap;}
+  .cgal-card .who small{display:block;font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-soft);}
+  .cgal-ctrl{display:flex;align-items:center;justify-content:center;gap:1.4rem;margin-top:1.4rem;}
+  .stories-hint{text-align:center;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--cream-dim);opacity:.6;margin:0;}
+  @media(max-width:520px){.cgal-stage{height:430px;perspective:1100px;}.cgal-card{width:208px;height:296px;margin-left:-104px;margin-top:-148px;}}
+
+  .float-wa{position:fixed;right:20px;bottom:20px;z-index:80;width:60px;height:60px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 14px 30px -8px rgba(37,211,102,.6);transition:transform .3s;}
+  .float-wa:hover{transform:scale(1.08);}
+  .float-wa svg{width:32px;height:32px;fill:#fff;}
+</style>
+</head>
+<body>
+
+<!-- crown symbol -->
+<svg width="0" height="0" style="position:absolute"><symbol id="crown" viewBox="0 0 100 70"><path d="M8 56 L3 16 L27 36 L50 6 L73 36 L97 16 L92 56 Z" fill="currentColor"/><rect x="8" y="56" width="84" height="9" rx="2" fill="currentColor"/><circle cx="3" cy="14" r="5" fill="currentColor"/><circle cx="50" cy="5" r="5.5" fill="currentColor"/><circle cx="97" cy="14" r="5" fill="currentColor"/></symbol></svg>
+
+<header id="hdr">
+  <div class="wrap nav">
+    <a href="#top" class="brand">
+      <span class="mark"><svg class="crown" style="width:1.1rem;height:1.1rem"><use href="#crown"/></svg></span>
+      <span class="name"><b>Isabela Meira</b><span>Nail Design</span></span>
+    </a>
+    <nav class="nav-links">
+      <a href="#servicos">Serviços</a>
+      <a href="#galeria">Galeria</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#depoimentos">Depoimentos</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <a href="#contato" class="btn">Agendar</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#servicos">Serviços</a>
+  <a href="#galeria">Galeria</a>
+  <a href="#sobre">Sobre</a>
+  <a href="#depoimentos">Depoimentos</a>
+  <a href="#contato">Contato</a>
+</div>
+
+<a class="float-wa" href="https://wa.me/5500000000000?text=Ol%C3%A1%20Isabela!%20Gostaria%20de%20agendar%20um%20hor%C3%A1rio." target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-1.027zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+</a>
+
+<main id="top">
+  <!-- HERO -->
+  <section class="hero">
+    <canvas id="shaderCanvas"></canvas>
+    <div class="wrap hero-grid">
+      <div class="reveal">
+        <div class="eyebrow">Nail Designer · Atendimento exclusivo</div>
+        <h1><span class="script-big">unhas de</span> <span class="rotador" id="rotador"><em data-words="princesa,rainha,realeza">princesa</em></span></h1>
+        <p class="lead">Alongamentos, nail art e cuidado autoral. Cada mão sai do meu atelier como uma pequena joia — feita com técnica, carinho e acabamento impecável.</p>
+        <div class="hero-cta">
+          <a href="https://wa.me/5500000000000?text=Ol%C3%A1%20Isabela!%20Gostaria%20de%20agendar%20um%20hor%C3%A1rio." target="_blank" rel="noopener" class="btn">Agendar pelo WhatsApp</a>
+          <a href="#galeria" class="btn btn-ghost">Ver galeria</a>
+        </div>
+        <div class="hero-stats">
+          <div class="s"><b>+8</b><span>Anos de arte</span></div>
+          <div class="s"><b>+2k</b><span>Clientes felizes</span></div>
+          <div class="s"><b>5,0</b><span>Avaliação</span></div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="portrait-frame">
+          <div class="arch"><img src="assets/isabela.jpeg" alt="Isabela Meira, nail designer" /></div>
+          <div class="portrait-badge">
+            <svg class="crown"><use href="#crown"/></svg>
+            <div><small>Isabela Meira</small><span>Nail Designer</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services sec-pad" id="servicos">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="eyebrow center">O que eu faço</div>
+        <h2>Serviços & Valores</h2>
+        <p>Técnicas modernas e materiais premium para unhas que duram, brilham e impressionam. Valores a partir de — fechamos o orçamento conforme o seu design.</p>
+      </div>
+      <div class="svc-grid">
+        <div class="svc reveal"><div class="num">01</div><h3>Alongamento em Gel</h3><p>Fibra, gel ou molde F1 na modelagem que combina com você — stiletto, amêndoa ou coffin.</p><div class="price"><b>R$ 180</b><span>a partir de</span></div></div>
+        <div class="svc reveal"><div class="num">02</div><h3>Banho de Gel</h3><p>Reforço natural que dá resistência e um brilho de espelho às suas próprias unhas.</p><div class="price"><b>R$ 90</b><span>a partir de</span></div></div>
+        <div class="svc reveal"><div class="num">03</div><h3>Esmaltação em Gel</h3><p>Cor de longa duração, secagem na cabine e acabamento que não lasca por semanas.</p><div class="price"><b>R$ 70</b><span>a partir de</span></div></div>
+        <div class="svc reveal"><div class="num">04</div><h3>Manutenção</h3><p>Cuidado e reequilíbrio a cada 3 semanas para manter o alongamento sempre impecável.</p><div class="price"><b>R$ 120</b><span>a partir de</span></div></div>
+        <div class="svc reveal"><div class="num">05</div><h3>Blindagem</h3><p>Proteção que sela e fortalece a unha natural, ideal para quem está em transição.</p><div class="price"><b>R$ 80</b><span>a partir de</span></div></div>
+        <div class="svc reveal"><div class="num">06</div><h3>Nail Art Autoral</h3><p>Encapsulados, foil dourado, pedrarias e desenhos exclusivos pensados só pra você.</p><div class="price"><b>Sob consulta</b><span>personalizado</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="sec-pad" id="galeria">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="eyebrow center">Portfólio</div>
+        <h2>Galeria de Trabalhos</h2>
+        <p>Um recorte das unhas que saíram do atelier. Cada conjunto é único — do clássico francês ao encapsulado mais ousado.</p>
+      </div>
+      <div class="cgal reveal">
+        <div class="cgal-stage" id="cgalStage">
+          <div class="cgal-ring" id="cgalRing">
+            <figure class="cgal-card"><img src="assets/nail-03-marble.png" alt="Francesinha azul marmorizada com foil dourado" draggable="false"/><figcaption><span class="tagline">Foil dourado</span><h4>Marmorizado Azul</h4><div class="who"><span class="av"><svg class="crown"><use href="#crown"/></svg></span><div><b>Isabela Meira</b><small>Nail art</small></div></div></figcaption></figure>
+            <figure class="cgal-card"><img src="assets/nail-12-rose.png" alt="Unhas rosa glitter com rosa dourada" draggable="false"/><figcaption><span class="tagline">Glitter &amp; Ouro</span><h4>Rosa Encantada</h4><div class="who"><span class="av"><svg class="crown"><use href="#crown"/></svg></span><div><b>Isabela Meira</b><small>Nail art</small></div></div></figcaption></figure>
+            <figure class="cgal-card"><img src="assets/nail-02-stars.png" alt="Unhas azuis glitter com estrelas douradas" draggable="false"/><figcaption><span class="tagline">Glitter</span><h4>Constelação</h4><div class="who"><span class="av"><svg class="crown"><use href="#crown"/></svg></span><div><b>Isabela Meira</b><small>Nail art</small></div></div></figcaption></figure>
+            <figure class="cgal-card"><img src="assets/nail-06-ombre.png" alt="Unhas ombré azul com glitter" draggable="false"/><figcaption><span class="tagline">Coffin</span><h4>Ombré Glitter</h4><div class="who"><span class="av"><svg class="crown"><use href="#crown"/></svg></span><div><b>Isabela Meira</b><small>Nail art</small></div></div></figcaption></figure>
+            <figure class="cgal-card"><img src="assets/nail-07-tiffany.png" alt="Unhas tiffany com glitter prata" draggable="false"/><figcaption><span class="tagline">Stiletto</span><h4>Tiffany</h4><div class="who"><span class="av"><svg class="crown"><use href="#crown"/></svg></span><div><b>Isabela Meira</b><small>Nail art</small></div></div></figcaption></figure>
+            <figure class="cgal-card"><img src="assets/nail-09-blackgold.png" alt="Francesinha preta com detalhes dourados" draggable="false"/><figcaption><span class="tagline">Francesinha</span><h4>Black &amp; Gold</h4><div class="who"><span class="av"><svg class="crown"><use href="#crown"/></svg></span><div><b>Isabela Meira</b><small>Nail art</small></div></div></figcaption></figure>
+            <figure class="cgal-card"><img src="assets/nail-01-lips.png" alt="Unhas nude com francesinha branca e beijos" draggable="false"/><figcaption><span class="tagline">Nude</span><h4>Lips</h4><div class="who"><span class="av"><svg class="crown"><use href="#crown"/></svg></span><div><b>Isabela Meira</b><small>Nail art</small></div></div></figcaption></figure>
+            <figure class="cgal-card"><img src="assets/nail-11-leaf.png" alt="Unhas amêndoa branco e dourado" draggable="false"/><figcaption><span class="tagline">Amêndoa</span><h4>Folhas Douradas</h4><div class="who"><span class="av"><svg class="crown"><use href="#crown"/></svg></span><div><b>Isabela Meira</b><small>Nail art</small></div></div></figcaption></figure>
+            <figure class="cgal-card"><img src="assets/nail-04-black.png" alt="Unhas stiletto pretas com brilho" draggable="false"/><figcaption><span class="tagline">Clássico</span><h4>Stiletto Black</h4><div class="who"><span class="av"><svg class="crown"><use href="#crown"/></svg></span><div><b>Isabela Meira</b><small>Nail art</small></div></div></figcaption></figure>
+            <figure class="cgal-card"><img src="assets/nail-10-butterfly.png" alt="Unhas tiffany com borboletas douradas" draggable="false"/><figcaption><span class="tagline">Tiffany</span><h4>Borboletas</h4><div class="who"><span class="av"><svg class="crown"><use href="#crown"/></svg></span><div><b>Isabela Meira</b><small>Nail art</small></div></div></figcaption></figure>
+            <figure class="cgal-card"><img src="assets/nail-08-floral.png" alt="Unhas francesinha com flores secas" draggable="false"/><figcaption><span class="tagline">Flores secas</span><h4>Jardim</h4><div class="who"><span class="av"><svg class="crown"><use href="#crown"/></svg></span><div><b>Isabela Meira</b><small>Nail art</small></div></div></figcaption></figure>
+          </div>
+        </div>
+        <div class="cgal-ctrl">
+          <button class="st-btn cg-prev" aria-label="Girar para a esquerda"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+          <p class="stories-hint">arraste para girar</p>
+          <button class="st-btn cg-next" aria-label="Girar para a direita"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about sec-pad" id="sobre">
+    <div class="wrap about-grid">
+      <div class="about-img reveal"><img src="assets/isabela.jpeg" alt="Isabela Meira no atelier"/></div>
+      <div class="reveal about-glass">
+        <div class="eyebrow">Sobre mim</div>
+        <h2>Prazer, sou a Isabela</h2>
+        <p>Sou nail designer apaixonada por transformar unhas em arte. O que começou como um hobby virou minha profissão e meu maior orgulho — hoje recebo clientes que viram amigas no meu atelier.</p>
+        <p>Trabalho com materiais de alta qualidade, biossegurança rigorosa e muito olhar para o detalhe. Acredito que uma boa manicure é autocuidado: você sai daqui mais confiante e com as mãos impecáveis.</p>
+        <div class="about-feats">
+          <div class="f"><b>+8</b><span>Anos de experiência</span></div>
+          <div class="f"><b>100%</b><span>Esterilização</span></div>
+          <div class="f"><b>♛</b><span>Atendimento de rainha</span></div>
+        </div>
+        <p class="sign">Isabela Meira</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="sec-pad" id="depoimentos">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="eyebrow center">Clientes</div>
+        <h2>O que elas dizem</h2>
+        <p>A maior recompensa do meu trabalho é ver cada cliente saindo encantada.</p>
+      </div>
+      <div class="tst-grid">
+        <div class="tst reveal"><div class="stars">★★★★★</div><blockquote>"Minhas unhas nunca duraram tanto e o acabamento é perfeito. A Isabela é cuidadosa em cada detalhe."</blockquote><div class="who"><span class="av">C</span><div><b>Camila R.</b><span>Cliente há 2 anos</span></div></div></div>
+        <div class="tst reveal"><div class="stars">★★★★★</div><blockquote>"Ambiente impecável e um atendimento que me faz sentir realmente especial. Recomendo de olhos fechados!"</blockquote><div class="who"><span class="av">J</span><div><b>Juliana M.</b><span>Cliente fiel</span></div></div></div>
+        <div class="tst reveal"><div class="stars">★★★★★</div><blockquote>"As nail arts são de outro nível. Sempre saio com a unha dos sonhos e cheia de elogios pra dar."</blockquote><div class="who"><span class="av">P</span><div><b>Patrícia L.</b><span>Cliente desde 2023</span></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact sec-pad" id="contato">
+    <div class="wrap">
+      <div class="contact-card reveal">
+        <svg class="crown"><use href="#crown"/></svg>
+        <h2>Vamos cuidar das suas unhas?</h2>
+        <p>Agende seu horário pelo WhatsApp. Respondo pessoalmente e monto o melhor design para o seu momento.</p>
+        <a href="https://wa.me/5500000000000?text=Ol%C3%A1%20Isabela!%20Gostaria%20de%20agendar%20um%20hor%C3%A1rio." target="_blank" rel="noopener" class="btn">Chamar no WhatsApp</a>
+        <div class="contact-meta">
+          <div><b>WhatsApp</b><a href="https://wa.me/5500000000000" target="_blank" rel="noopener">(00) 00000-0000</a></div>
+          <div><b>Instagram</b><a href="#">@isabelameira.nails</a></div>
+          <div><b>Atelier</b>Sua Cidade · Atendimento com hora marcada</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div class="brand">
+      <span class="mark"><svg class="crown" style="width:1.1rem;height:1.1rem"><use href="#crown"/></svg></span>
+      <span class="name"><b>Isabela Meira</b><span>Nail Design</span></span>
+    </div>
+    <small>© 2026 Isabela Meira Nail Design · Feito com carinho</small>
+    <div class="socials">
+      <a href="#" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+      <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" aria-label="WhatsApp"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-1.027z"/></svg></a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const hdr=document.getElementById('hdr');
+  window.addEventListener('scroll',()=>hdr.classList.toggle('scrolled',window.scrollY>40));
+  const mb=document.getElementById('menuBtn'),mm=document.getElementById('mobileMenu');
+  mb.addEventListener('click',()=>mm.classList.toggle('open'));
+  mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mm.classList.remove('open')));
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.12});
+  document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(i%3*90)+'ms';io.observe(el);});
+
+  /* ---------- about section: play motion only while in view ---------- */
+  (function(){
+    const about=document.querySelector('.about');if(!about)return;
+    if('IntersectionObserver'in window){
+      new IntersectionObserver((es)=>{es.forEach(e=>about.classList.toggle('in-view',e.isIntersecting));},{threshold:0.12}).observe(about);
+    }else{about.classList.add('in-view');}
+  })();
+
+  /* ---------- rotating hero word: princesa · rainha · realeza ---------- */
+  (function(){
+    const em=document.querySelector('#rotador em');if(!em)return;
+    const words=(em.dataset.words||'').split(',').map(w=>w.trim()).filter(Boolean);
+    if(words.length<2)return;
+    let i=0,timer;
+    function cycle(){
+      em.classList.add('out');
+      setTimeout(()=>{
+        i=(i+1)%words.length;
+        em.textContent=words[i];
+        em.classList.remove('out');em.classList.add('in');
+        requestAnimationFrame(()=>requestAnimationFrame(()=>em.classList.remove('in')));
+      },400);
+    }
+    function start(){if(!timer)timer=setInterval(cycle,2600);}
+    function stop(){clearInterval(timer);timer=null;}
+    start();
+    document.addEventListener('visibilitychange',()=>{document.hidden?stop():start();});
+  })();
+
+  /* ---------- 3D circular gallery: auto-rotate + drag + arrows ---------- */
+  (function(){
+    const stage=document.getElementById('cgalStage'),ring=document.getElementById('cgalRing');
+    if(!stage||!ring)return;
+    const cards=[...ring.querySelectorAll('.cgal-card')];
+    const n=cards.length, step=360/n;
+    let radius=460;
+    function calcRadius(){
+      const cardW=cards[0].offsetWidth||256;
+      // radius so neighbouring cards sit comfortably apart
+      const r=(cardW*0.62)/Math.tan(Math.PI/n);
+      radius=Math.max(300,Math.min(560,r));
+    }
+    let rotation=0, dragging=false, lastX=0, vel=0, autoSpeed=0.04;
+    cards.forEach((c,i)=>{c.dataset.angle=i*step;});
+    function layout(){
+      cards.forEach((c)=>{
+        const a=parseFloat(c.dataset.angle);
+        c.style.transform=`rotateY(${a}deg) translateZ(${radius}px)`;
+      });
+    }
+    function render(){
+      ring.style.transform=`translateZ(-${radius}px) rotateY(${rotation}deg)`;
+      cards.forEach((c)=>{
+        const a=parseFloat(c.dataset.angle);
+        let rel=((a+rotation)%360+360)%360;          // 0 = front-ish
+        const norm=rel>180?360-rel:rel;               // 0 front, 180 back
+        const o=Math.max(0.2,1-norm/175);
+        c.style.opacity=o.toFixed(3);
+        c.style.zIndex=String(Math.round(1000-norm));
+      });
+    }
+    calcRadius();layout();render();
+    window.addEventListener('resize',()=>{calcRadius();layout();render();});
+
+    // drag to spin
+    stage.addEventListener('pointerdown',e=>{dragging=true;lastX=e.clientX;vel=0;stage.classList.add('dragging');stage.setPointerCapture(e.pointerId);stop();});
+    stage.addEventListener('pointermove',e=>{if(!dragging)return;const dx=e.clientX-lastX;lastX=e.clientX;rotation+=dx*0.35;vel=dx*0.35;render();});
+    function endDrag(){if(!dragging)return;dragging=false;stage.classList.remove('dragging');play();}
+    stage.addEventListener('pointerup',endDrag);
+    stage.addEventListener('pointercancel',endDrag);
+    stage.addEventListener('pointerleave',()=>{if(dragging)endDrag();});
+
+    let target=0,snapTo=false;
+    document.querySelector('.cg-prev')?.addEventListener('click',()=>{target=Math.round(rotation/step)*step-step;snapTo=true;vel=0;play();});
+    document.querySelector('.cg-next')?.addEventListener('click',()=>{target=Math.round(rotation/step)*step+step;snapTo=true;vel=0;play();});
+
+    // animation loop runs ONLY while settling (momentum / snap). Idle = no RAF, zero cost.
+    let raf=null,last=0;const FRAME=1000/60;
+    function tick(now){
+      if(dragging){raf=null;return;}
+      if(now-last>=FRAME){
+        last=now;
+        if(snapTo){
+          rotation+=(target-rotation)*0.16;
+          if(Math.abs(target-rotation)<0.3){rotation=target;snapTo=false;}
+        }else if(Math.abs(vel)>0.04){
+          rotation+=vel;vel*=0.93;          // momentum after drag
+        }
+        render();
+      }
+      if(snapTo||Math.abs(vel)>0.04){raf=requestAnimationFrame(tick);}else{raf=null;}
+    }
+    function play(){if(raf===null&&!document.hidden){last=0;raf=requestAnimationFrame(tick);}}
+    function stop(){if(raf!==null){cancelAnimationFrame(raf);raf=null;}}
+    document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();});
+  })();
+
+  /* ---------- WebGL shader behind the header / hero ---------- */
+  (function(){
+    const cv=document.getElementById('shaderCanvas');
+    if(!cv)return;
+    const gl=cv.getContext('webgl',{preserveDrawingBuffer:true,antialias:true,alpha:false})||cv.getContext('experimental-webgl',{preserveDrawingBuffer:true});
+    if(!gl){cv.style.background='radial-gradient(120% 100% at 70% 0%,#16264a,#0a1226 60%,#070d1c)';return;}
+    const vs='attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
+    const fs=[
+      'precision highp float;',
+      'uniform vec2 u_res;uniform float u_time;',
+      'float hash(vec2 p){p=fract(p*vec2(123.34,456.21));p+=dot(p,p+45.32);return fract(p.x*p.y);}',
+      'float noise(vec2 p){vec2 i=floor(p),f=fract(p);float a=hash(i),b=hash(i+vec2(1.,0.)),c=hash(i+vec2(0.,1.)),d=hash(i+vec2(1.,1.));vec2 u=f*f*(3.-2.*f);return mix(a,b,u.x)+(c-a)*u.y*(1.-u.x)+(d-b)*u.x*u.y;}',
+      'float fbm(vec2 p){float v=0.,a=.5;for(int i=0;i<4;i++){v+=a*noise(p);p*=2.02;a*=.5;}return v;}',
+      'void main(){',
+      ' vec2 uv=gl_FragCoord.xy/u_res.xy;',
+      ' vec2 p=uv*vec2(u_res.x/u_res.y,1.)*2.3;',
+      ' float t=u_time*0.045;',
+      ' vec2 q=vec2(fbm(p+t),fbm(p+vec2(5.2,1.3)-t));',
+      ' vec2 r=vec2(fbm(p+4.*q+vec2(1.7,9.2)+t*.6),fbm(p+4.*q+vec2(8.3,2.8)-t*.6));',
+      ' float f=fbm(p+4.*r);',
+      ' vec3 navy=vec3(0.055,0.102,0.212);',
+      ' vec3 blue=vec3(0.149,0.345,0.627);',
+      ' vec3 deep=vec3(0.310,0.196,0.549);',
+      ' vec3 gold=vec3(0.870,0.698,0.396);',
+      ' vec3 col=navy;',
+      ' col=mix(col,blue,smoothstep(0.15,0.85,f));',
+      ' col=mix(col,deep,smoothstep(0.30,0.95,length(q))*0.85);',
+      ' col=mix(col,gold,smoothstep(0.55,0.98,r.x)*0.7);',
+      ' col+=blue*0.07+gold*0.045*pow(max(f,0.),2.0);',
+      ' col*=0.82*(1.0-0.26*length(uv-0.5));',
+      ' gl_FragColor=vec4(col,1.);',
+      '}'
+    ].join('\n');
+    function mk(t,s){const o=gl.createShader(t);gl.shaderSource(o,s);gl.compileShader(o);return o;}
+    const prog=gl.createProgram();
+    gl.attachShader(prog,mk(gl.VERTEX_SHADER,vs));
+    gl.attachShader(prog,mk(gl.FRAGMENT_SHADER,fs));
+    gl.linkProgram(prog);
+    if(!gl.getProgramParameter(prog,gl.LINK_STATUS)){cv.style.background='radial-gradient(120% 100% at 70% 0%,#1a2c52,#0a1226 60%,#070d1c)';return;}
+    gl.useProgram(prog);
+    gl.clearColor(0.055,0.102,0.212,1.0);
+    const buf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buf);
+    gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);
+    const loc=gl.getAttribLocation(prog,'p');gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
+    const uRes=gl.getUniformLocation(prog,'u_res'),uTime=gl.getUniformLocation(prog,'u_time');
+    function resize(){const r=cv.getBoundingClientRect();const scale=0.5;cv.width=Math.max(2,Math.round(r.width*scale));cv.height=Math.max(2,Math.round(r.height*scale));gl.viewport(0,0,cv.width,cv.height);}
+    window.addEventListener('resize',resize);resize();
+    const start=performance.now();let raf=null,visible=true,last=0;const FPS=24,FRAME=1000/FPS;
+    function draw(now){gl.uniform2f(uRes,cv.width,cv.height);gl.uniform1f(uTime,(now-start)/1000);gl.clear(gl.COLOR_BUFFER_BIT);gl.drawArrays(gl.TRIANGLE_STRIP,0,4);}
+    draw(start+12000);
+    function loop(now){raf=requestAnimationFrame(loop);if(now-last<FRAME)return;last=now;draw(now);}
+    function play(){if(raf===null&&visible&&!document.hidden){last=0;raf=requestAnimationFrame(loop);}}
+    function stop(){if(raf!==null){cancelAnimationFrame(raf);raf=null;}}
+    const hero=document.querySelector('.hero');
+    if('IntersectionObserver'in window&&hero){new IntersectionObserver((es)=>{visible=es[0].isIntersecting&&es[0].intersectionRatio>0.12;if(visible){resize();play();}else{stop();}},{threshold:[0,0.12,0.5]}).observe(hero);}
+    play();
+    document.addEventListener('visibilitychange',()=>{if(document.hidden){stop();}else{resize();play();}});
+  })();
+</script>
+</body>
+</html>

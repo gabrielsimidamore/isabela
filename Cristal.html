@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Isabela Meira · Nail Design — Cristal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Jost:wght@300;400;500&family=Parisienne&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --cream:#faf5ec;
+    --cream-2:#fffdf9;
+    --paper:#ffffff;
+    --navy:#1a2541;
+    --navy-soft:#3a456b;
+    --ink:#222b41;
+    --muted:#7d7565;
+    --gold:#b3873c;
+    --gold-soft:#caa25a;
+    --line:rgba(26,37,65,.12);
+    --line-gold:rgba(179,135,60,.4);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--cream);color:var(--ink);font-family:'Jost',sans-serif;font-weight:300;line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  h1,h2,h3,h4{font-family:'Cormorant Garamond',serif;font-weight:600;line-height:1.07;color:var(--navy);}
+  a{color:inherit;text-decoration:none;}
+  img{display:block;max-width:100%;}
+  .wrap{width:min(1180px,91vw);margin-inline:auto;}
+  .eyebrow{font-size:.72rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:.85rem;font-weight:400;}
+  .eyebrow::before{content:"";width:30px;height:1px;background:var(--gold);}
+  .eyebrow.center{justify-content:center;}
+  .eyebrow.center::after{content:"";width:30px;height:1px;background:var(--gold);}
+  .crown{width:1em;height:1em;color:var(--gold);display:inline-block;vertical-align:middle;}
+
+  .btn{display:inline-flex;align-items:center;gap:.6rem;font-weight:400;font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;padding:1.05rem 2.1rem;border-radius:2rem;background:var(--navy);color:var(--cream-2);border:1px solid var(--navy);cursor:pointer;transition:transform .35s,background .35s,color .35s;}
+  .btn:hover{transform:translateY(-3px);background:var(--gold);border-color:var(--gold);color:#fff;}
+  .btn-ghost{background:transparent;color:var(--navy);border:1px solid var(--line);}
+  .btn-ghost:hover{background:transparent;border-color:var(--navy);color:var(--navy);}
+
+  header{position:fixed;top:0;left:0;width:100%;z-index:60;transition:background .4s,box-shadow .4s,padding .4s;}
+  header.scrolled{background:rgba(250,245,236,.88);backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line);}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:1.3rem 0;}
+  .brand{display:flex;align-items:center;gap:.7rem;}
+  .brand .mark{width:42px;height:42px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;color:var(--gold);}
+  .brand .name b{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.2rem;color:var(--navy);letter-spacing:.03em;display:block;white-space:nowrap;line-height:1;}
+  .brand .name span{font-size:.58rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);}
+  .nav-links{display:flex;gap:2.1rem;}
+  .nav-links a{font-size:.8rem;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);transition:color .3s;}
+  .nav-links a:hover{color:var(--navy);}
+  .nav .btn{padding:.78rem 1.5rem;}
+  .menu-btn{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;}
+  .menu-btn span{width:26px;height:1.5px;background:var(--navy);display:block;}
+  .mobile-menu{position:fixed;inset:0;z-index:55;background:var(--cream-2);display:flex;flex-direction:column;justify-content:center;align-items:center;gap:1.4rem;transform:translateY(-100%);transition:transform .5s cubic-bezier(.7,0,.2,1);}
+  .mobile-menu.open{transform:translateY(0);}
+  .mobile-menu a{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--navy);}
+
+  .hero{padding:11rem 0 6rem;position:relative;}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:4.5rem;align-items:center;}
+  .hero .script-big{font-family:'Parisienne',cursive;color:var(--gold);font-size:clamp(2rem,4vw,3rem);display:block;margin-bottom:-.4rem;}
+  .hero h1{font-size:clamp(3rem,6.6vw,5.8rem);margin:1.2rem 0 1.5rem;letter-spacing:-.01em;}
+  .hero h1 em{font-style:italic;color:var(--gold);font-weight:500;}
+  .hero p.lead{max-width:36ch;color:var(--muted);font-size:1.06rem;margin-bottom:2.3rem;}
+  .hero-cta{display:flex;gap:1rem;flex-wrap:wrap;}
+  .hero-stats{display:flex;gap:2.6rem;margin-top:3.2rem;padding-top:2.2rem;border-top:1px solid var(--line);}
+  .hero-stats .s b{font-family:'Cormorant Garamond',serif;font-size:2.3rem;color:var(--navy);display:block;line-height:1;}
+  .hero-stats .s span{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);}
+
+  .portrait{position:relative;}
+  .portrait .frame{border-radius:220px 220px 24px 24px;overflow:hidden;box-shadow:0 40px 80px -40px rgba(26,37,65,.4);position:relative;z-index:2;}
+  .portrait .frame img{width:100%;height:600px;object-fit:cover;object-position:top center;}
+  .portrait::before{content:"";position:absolute;top:30px;left:-26px;width:130px;height:130px;border:1px solid var(--line-gold);border-radius:50%;z-index:1;}
+  .portrait .badge{position:absolute;right:-22px;bottom:40px;z-index:3;background:var(--paper);border-radius:1rem;padding:1rem 1.3rem;box-shadow:0 20px 40px -20px rgba(26,37,65,.3);display:flex;align-items:center;gap:.7rem;}
+  .portrait .badge .crown{font-size:1.6rem;}
+  .portrait .badge small{font-family:'Parisienne',cursive;font-size:1.3rem;color:var(--gold);line-height:1;display:block;}
+  .portrait .badge span{font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);}
+
+  .sec-pad{padding:7rem 0;}
+  .sec-head{text-align:center;max-width:640px;margin:0 auto 4rem;}
+  .sec-head h2{font-size:clamp(2.4rem,4.6vw,3.6rem);margin:1rem 0 1rem;}
+  .sec-head p{color:var(--muted);}
+
+  .services{background:var(--cream-2);}
+  .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;}
+  .svc{background:var(--paper);border-radius:1.2rem;padding:2.2rem 2rem;border:1px solid var(--line);transition:transform .4s,box-shadow .4s;position:relative;}
+  .svc::before{content:"";position:absolute;top:0;left:2rem;right:2rem;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .45s;}
+  .svc:hover{transform:translateY(-8px);box-shadow:0 30px 60px -30px rgba(26,37,65,.25);}
+  .svc:hover::before{transform:scaleX(1);}
+  .svc .num{font-family:'Cormorant Garamond',serif;color:var(--gold);letter-spacing:.2em;font-size:.95rem;}
+  .svc h3{font-size:1.7rem;margin:.6rem 0 .8rem;}
+  .svc p{color:var(--muted);font-size:.92rem;min-height:5.4em;}
+  .svc .price{margin-top:1.2rem;padding-top:1.2rem;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:baseline;}
+  .svc .price b{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--navy);}
+  .svc .price span{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+
+  .gal-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:230px;gap:1rem;}
+  .gal-item{overflow:hidden;border-radius:1rem;position:relative;}
+  .gal-item img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.8,.2,1);}
+  .gal-item:hover img{transform:scale(1.07);}
+  .gal-item::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(26,37,65,.45),transparent 55%);opacity:0;transition:opacity .4s;}
+  .gal-item:hover::after{opacity:1;}
+  .gal-item .tag{position:absolute;left:1rem;bottom:1rem;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:#fff;opacity:0;transform:translateY(8px);transition:.4s;z-index:2;}
+  .gal-item:hover .tag{opacity:1;transform:translateY(0);}
+  .tall{grid-row:span 2;}
+  .wide{grid-column:span 2;}
+
+  .about{background:var(--cream-2);}
+  .about-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:4rem;align-items:center;}
+  .about-img{border-radius:24px 24px 200px 200px;overflow:hidden;box-shadow:0 40px 80px -40px rgba(26,37,65,.35);}
+  .about-img img{width:100%;height:560px;object-fit:cover;object-position:center top;}
+  .about h2{font-size:clamp(2.4rem,4.6vw,3.4rem);margin:1rem 0 1.4rem;}
+  .about p{color:var(--muted);margin-bottom:1.2rem;}
+  .about .sign{font-family:'Parisienne',cursive;font-size:2.4rem;color:var(--gold);margin-top:.5rem;}
+  .about-feats{display:flex;gap:2.4rem;margin:2rem 0;}
+  .about-feats .f b{font-family:'Cormorant Garamond',serif;font-size:2.6rem;color:var(--navy);display:block;line-height:1;}
+  .about-feats .f span{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+
+  .tst-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;}
+  .tst{background:var(--paper);border:1px solid var(--line);border-radius:1.2rem;padding:2.2rem;position:relative;}
+  .tst .q{font-family:'Cormorant Garamond',serif;font-size:4rem;color:var(--gold-soft);line-height:.6;height:.5em;display:block;}
+  .tst blockquote{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.3rem;line-height:1.45;color:var(--navy);margin:1rem 0 1.4rem;}
+  .tst .stars{color:var(--gold);letter-spacing:.2em;margin-bottom:.9rem;}
+  .tst .who{display:flex;align-items:center;gap:.9rem;}
+  .tst .who .av{width:44px;height:44px;border-radius:50%;background:var(--navy);display:grid;place-items:center;color:var(--cream-2);font-family:'Cormorant Garamond',serif;font-size:1.2rem;}
+  .tst .who b{font-weight:400;font-size:.95rem;color:var(--navy);}
+  .tst .who span{display:block;font-size:.74rem;color:var(--muted);}
+
+  .contact{background:var(--navy);color:var(--cream);}
+  .contact h2,.contact .eyebrow{color:var(--cream);}
+  .contact .eyebrow{color:var(--gold-soft);}
+  .contact .eyebrow::before,.contact .eyebrow::after{background:var(--gold-soft);}
+  .contact-card{text-align:center;max-width:760px;margin:0 auto;}
+  .contact-card .crown{font-size:2.6rem;color:var(--gold-soft);}
+  .contact-card h2{font-size:clamp(2.4rem,5vw,4rem);margin:1rem 0 1.2rem;}
+  .contact-card p{color:rgba(244,236,221,.7);max-width:46ch;margin:0 auto 2.4rem;}
+  .contact-card .btn{background:var(--gold);border-color:var(--gold);color:#fff;}
+  .contact-card .btn:hover{background:var(--gold-soft);border-color:var(--gold-soft);}
+  .contact-meta{display:flex;justify-content:center;gap:2.6rem;flex-wrap:wrap;margin-top:2.6rem;font-size:.9rem;color:rgba(244,236,221,.7);}
+  .contact-meta b{color:var(--gold-soft);font-weight:400;letter-spacing:.12em;text-transform:uppercase;font-size:.7rem;display:block;margin-bottom:.2rem;}
+  .contact-meta a:hover{color:var(--gold-soft);}
+
+  footer{background:var(--cream-2);padding:3rem 0;border-top:1px solid var(--line);}
+  .foot{display:flex;justify-content:space-between;align-items:center;gap:1.5rem;flex-wrap:wrap;}
+  .foot small{color:var(--muted);font-size:.8rem;}
+  .foot .socials{display:flex;gap:1rem;}
+  .foot .socials a{width:40px;height:40px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;color:var(--muted);transition:.3s;}
+  .foot .socials a:hover{color:var(--gold);border-color:var(--gold);transform:translateY(-3px);}
+
+  .reveal{opacity:0;transform:translateY(32px);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1);}
+  .reveal.in{opacity:1;transform:none;}
+
+  .float-wa{position:fixed;right:20px;bottom:20px;z-index:80;width:60px;height:60px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 14px 30px -8px rgba(37,211,102,.5);transition:transform .3s;}
+  .float-wa:hover{transform:scale(1.08);}
+  .float-wa svg{width:32px;height:32px;fill:#fff;}
+
+  @media(max-width:920px){
+    .hero-grid,.about-grid{grid-template-columns:1fr;gap:3rem;}
+    .portrait{max-width:440px;margin:0 auto;}
+    .svc-grid,.tst-grid{grid-template-columns:1fr;}
+    .gal-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:200px;}
+    .nav-links,.nav .btn{display:none;}
+    .menu-btn{display:flex;}
+    .about-img img{height:420px;}
+  }
+  @media(max-width:520px){.gal-grid{gap:.6rem;grid-auto-rows:150px;}.hero-stats{gap:1.5rem;}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><symbol id="crown" viewBox="0 0 100 70"><path d="M8 56 L3 16 L27 36 L50 6 L73 36 L97 16 L92 56 Z" fill="currentColor"/><rect x="8" y="56" width="84" height="9" rx="2" fill="currentColor"/><circle cx="3" cy="14" r="5" fill="currentColor"/><circle cx="50" cy="5" r="5.5" fill="currentColor"/><circle cx="97" cy="14" r="5" fill="currentColor"/></symbol></svg>
+
+<header id="hdr">
+  <div class="wrap nav">
+    <a href="#top" class="brand">
+      <span class="mark"><svg class="crown" style="width:1.1rem;height:1.1rem"><use href="#crown"/></svg></span>
+      <span class="name"><b>Isabela Meira</b><span>Nail Design</span></span>
+    </a>
+    <nav class="nav-links">
+      <a href="#servicos">Serviços</a>
+      <a href="#galeria">Galeria</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#depoimentos">Depoimentos</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <a href="#contato" class="btn">Agendar</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#servicos">Serviços</a><a href="#galeria">Galeria</a><a href="#sobre">Sobre</a><a href="#depoimentos">Depoimentos</a><a href="#contato">Contato</a>
+</div>
+
+<a class="float-wa" href="https://wa.me/5500000000000?text=Ol%C3%A1%20Isabela!%20Gostaria%20de%20agendar%20um%20hor%C3%A1rio." target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-1.027zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+</a>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="reveal">
+        <div class="eyebrow">Nail Designer</div>
+        <h1><span class="script-big">unhas que viram</span> pequenas <em>joias</em></h1>
+        <p class="lead">Alongamentos, nail art e cuidado autoral em um atelier feito para o seu bem-estar. Saia daqui com as mãos impecáveis e a confiança renovada.</p>
+        <div class="hero-cta">
+          <a href="https://wa.me/5500000000000?text=Ol%C3%A1%20Isabela!%20Gostaria%20de%20agendar%20um%20hor%C3%A1rio." target="_blank" rel="noopener" class="btn">Agendar pelo WhatsApp</a>
+          <a href="#galeria" class="btn btn-ghost">Ver galeria</a>
+        </div>
+        <div class="hero-stats">
+          <div class="s"><b>+8</b><span>Anos de arte</span></div>
+          <div class="s"><b>+2k</b><span>Clientes</span></div>
+          <div class="s"><b>5,0</b><span>Avaliação</span></div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="portrait">
+          <div class="frame"><img src="assets/isabela.jpeg" alt="Isabela Meira, nail designer"/></div>
+          <div class="badge"><svg class="crown"><use href="#crown"/></svg><div><small>Isabela Meira</small><span>Nail Designer</span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="services sec-pad" id="servicos">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="eyebrow center">O que eu faço</div>
+        <h2>Serviços & Valores</h2>
+        <p>Técnicas modernas e materiais premium. Valores a partir de — o orçamento final depende do design escolhido.</p>
+      </div>
+      <div class="svc-grid">
+        <div class="svc reveal"><div class="num">01</div><h3>Alongamento em Gel</h3><p>Fibra, gel ou molde F1 na modelagem que combina com você — stiletto, amêndoa ou coffin.</p><div class="price"><b>R$ 180</b><span>a partir de</span></div></div>
+        <div class="svc reveal"><div class="num">02</div><h3>Banho de Gel</h3><p>Reforço natural que dá resistência e um brilho de espelho às suas próprias unhas.</p><div class="price"><b>R$ 90</b><span>a partir de</span></div></div>
+        <div class="svc reveal"><div class="num">03</div><h3>Esmaltação em Gel</h3><p>Cor de longa duração, secagem na cabine e acabamento que não lasca por semanas.</p><div class="price"><b>R$ 70</b><span>a partir de</span></div></div>
+        <div class="svc reveal"><div class="num">04</div><h3>Manutenção</h3><p>Cuidado e reequilíbrio a cada 3 semanas para manter o alongamento sempre impecável.</p><div class="price"><b>R$ 120</b><span>a partir de</span></div></div>
+        <div class="svc reveal"><div class="num">05</div><h3>Blindagem</h3><p>Proteção que sela e fortalece a unha natural, ideal para quem está em transição.</p><div class="price"><b>R$ 80</b><span>a partir de</span></div></div>
+        <div class="svc reveal"><div class="num">06</div><h3>Nail Art Autoral</h3><p>Encapsulados, foil dourado, pedrarias e desenhos exclusivos pensados só pra você.</p><div class="price"><b>Sob consulta</b><span>personalizado</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec-pad" id="galeria">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="eyebrow center">Portfólio</div>
+        <h2>Galeria de Trabalhos</h2>
+        <p>Um recorte das unhas que saíram do atelier — do clássico francês ao encapsulado mais ousado.</p>
+      </div>
+      <div class="gal-grid">
+        <div class="gal-item tall reveal"><img src="assets/nail-11-leaf.png" alt="Unhas amêndoa branco e dourado"/><span class="tag">Amêndoa · Folhas</span></div>
+        <div class="gal-item reveal"><img src="assets/nail-01-lips.png" alt="Unhas nude francesinha com beijos"/><span class="tag">Nude · Lips</span></div>
+        <div class="gal-item reveal"><img src="assets/nail-07-tiffany.png" alt="Unhas tiffany com glitter"/><span class="tag">Tiffany · Prata</span></div>
+        <div class="gal-item wide reveal"><img src="assets/nail-06-ombre.png" alt="Unhas ombré azul com glitter"/><span class="tag">Ombré · Glitter</span></div>
+        <div class="gal-item reveal"><img src="assets/nail-12-rose.png" alt="Unhas rosa glitter com rosa dourada"/><span class="tag">Rosa · Dourado</span></div>
+        <div class="gal-item reveal"><img src="assets/nail-03-marble.png" alt="Francesinha azul marmorizada"/><span class="tag">Marmorizado</span></div>
+        <div class="gal-item tall reveal"><img src="assets/nail-08-floral.png" alt="Unhas francesinha com flores secas"/><span class="tag">Floral · Seco</span></div>
+        <div class="gal-item reveal"><img src="assets/nail-02-stars.png" alt="Unhas azuis glitter com estrelas"/><span class="tag">Glitter · Estrelas</span></div>
+        <div class="gal-item reveal"><img src="assets/nail-10-butterfly.png" alt="Unhas tiffany com borboletas"/><span class="tag">Borboletas</span></div>
+        <div class="gal-item reveal"><img src="assets/nail-04-black.png" alt="Unhas stiletto pretas"/><span class="tag">Stiletto · Black</span></div>
+        <div class="gal-item reveal"><img src="assets/nail-09-blackgold.png" alt="Francesinha preta dourada"/><span class="tag">Francesinha · Ouro</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about sec-pad" id="sobre">
+    <div class="wrap about-grid">
+      <div class="about-img reveal"><img src="assets/isabela.jpeg" alt="Isabela Meira no atelier"/></div>
+      <div class="reveal">
+        <div class="eyebrow">Sobre mim</div>
+        <h2>Prazer, sou a Isabela</h2>
+        <p>Sou nail designer apaixonada por transformar unhas em arte. O que começou como um hobby virou minha profissão e meu maior orgulho — hoje recebo clientes que viram amigas no meu atelier.</p>
+        <p>Trabalho com materiais de alta qualidade, biossegurança rigorosa e muito olhar para o detalhe. Acredito que uma boa manicure é autocuidado: você sai daqui mais confiante e com as mãos impecáveis.</p>
+        <div class="about-feats">
+          <div class="f"><b>+8</b><span>Anos de experiência</span></div>
+          <div class="f"><b>100%</b><span>Esterilização</span></div>
+          <div class="f"><b>♛</b><span>Atendimento de rainha</span></div>
+        </div>
+        <p class="sign">Isabela Meira</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec-pad" id="depoimentos">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="eyebrow center">Clientes</div>
+        <h2>O que elas dizem</h2>
+        <p>A maior recompensa do meu trabalho é ver cada cliente saindo encantada.</p>
+      </div>
+      <div class="tst-grid">
+        <div class="tst reveal"><span class="q">"</span><div class="stars">★★★★★</div><blockquote>Minhas unhas nunca duraram tanto e o acabamento é perfeito. A Isabela é cuidadosa em cada detalhe.</blockquote><div class="who"><span class="av">C</span><div><b>Camila R.</b><span>Cliente há 2 anos</span></div></div></div>
+        <div class="tst reveal"><span class="q">"</span><div class="stars">★★★★★</div><blockquote>Ambiente impecável e um atendimento que me faz sentir realmente especial. Recomendo de olhos fechados!</blockquote><div class="who"><span class="av">J</span><div><b>Juliana M.</b><span>Cliente fiel</span></div></div></div>
+        <div class="tst reveal"><span class="q">"</span><div class="stars">★★★★★</div><blockquote>As nail arts são de outro nível. Sempre saio com a unha dos sonhos e cheia de elogios pra dar.</blockquote><div class="who"><span class="av">P</span><div><b>Patrícia L.</b><span>Cliente desde 2023</span></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact sec-pad" id="contato">
+    <div class="wrap">
+      <div class="contact-card reveal">
+        <svg class="crown"><use href="#crown"/></svg>
+        <h2>Vamos cuidar das suas unhas?</h2>
+        <p>Agende seu horário pelo WhatsApp. Respondo pessoalmente e monto o melhor design para o seu momento.</p>
+        <a href="https://wa.me/5500000000000?text=Ol%C3%A1%20Isabela!%20Gostaria%20de%20agendar%20um%20hor%C3%A1rio." target="_blank" rel="noopener" class="btn">Chamar no WhatsApp</a>
+        <div class="contact-meta">
+          <div><b>WhatsApp</b><a href="https://wa.me/5500000000000" target="_blank" rel="noopener">(00) 00000-0000</a></div>
+          <div><b>Instagram</b><a href="#">@isabelameira.nails</a></div>
+          <div><b>Atelier</b>Sua Cidade · Com hora marcada</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div class="brand">
+      <span class="mark"><svg class="crown" style="width:1.1rem;height:1.1rem"><use href="#crown"/></svg></span>
+      <span class="name"><b>Isabela Meira</b><span>Nail Design</span></span>
+    </div>
+    <small>© 2026 Isabela Meira Nail Design · Feito com carinho</small>
+    <div class="socials">
+      <a href="#" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+      <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" aria-label="WhatsApp"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-1.027z"/></svg></a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const hdr=document.getElementById('hdr');
+  window.addEventListener('scroll',()=>hdr.classList.toggle('scrolled',window.scrollY>40));
+  const mb=document.getElementById('menuBtn'),mm=document.getElementById('mobileMenu');
+  mb.addEventListener('click',()=>mm.classList.toggle('open'));
+  mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mm.classList.remove('open')));
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.12});
+  document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(i%3*90)+'ms';io.observe(el);});
+</script>
+</body>
+</html>
